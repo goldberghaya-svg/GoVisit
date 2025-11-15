@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GoVisit.Domain/GoVisit.Domain.csproj" />
+  <Project Path="GoVisit.Repo/GoVisit.Repo.csproj" />
+  <Project Path="GoVisit/GoVisit.csproj" />
+</Solution>
