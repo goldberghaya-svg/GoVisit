@@ -1,4 +1,4 @@
-**Book Appointment - mini application**
+**Book Appointment - mini app**
 
 **DB** - Mongo Atlas cluster
 
