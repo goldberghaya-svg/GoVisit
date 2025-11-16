@@ -1,4 +1,7 @@
-﻿using GoVisit.Domain;
+﻿using Core.Commands;
+using Core.Queries;
+using GoVisit.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoVisit.Controllers;
@@ -8,16 +11,16 @@ namespace GoVisit.Controllers;
 public class UserController : ControllerBase
 {
 
-    private readonly IUserRepository _repository;
+    private readonly IMediator _mediator;
 
-    public UserController(IUserRepository repository) => 
-        _repository = repository;
+    public UserController(IMediator mediator) =>
+        _mediator = mediator;
 
     [HttpGet]
     public async Task<IActionResult> Get(long id) =>
-        Ok(await _repository.Get(id));
+        Ok(await _mediator.Send(new GetUserQuery(id)));
 
     [HttpPost]
     public async Task<IActionResult> Post(User user) =>
-        Ok(_repository.Add(user));
+        Ok(_mediator.Send(new AddUserCommand(user)));
 }

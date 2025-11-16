@@ -1,4 +1,7 @@
+using Core.Commands;
+using Core.Queries;
 using GoVisit.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoVisit.Controllers;
@@ -8,31 +11,27 @@ namespace GoVisit.Controllers;
 public class AppointmentController : ControllerBase
 {
 
-    private readonly IAppiontmentsForUserRepository _repository;
-    public AppointmentController(IAppiontmentsForUserRepository repository) =>   
-        _repository = repository;
+    private readonly IMediator _mediator; 
+    public AppointmentController(IMediator mediator) =>
+        _mediator = mediator;
     
 
     [HttpGet]
     public async Task<IActionResult> Get(long id) =>
-       Ok((await _repository.Get())
-        .Where(a=> a.UserId == id)
-           .SelectMany(a => a.Appointments).ToList());
+       Ok(await _mediator.Send(new GetAppointmentsForUserQuery(id)));
          
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody]AppointmentsForUser appointmentsForUser)
     {
-        await _repository.Add(appointmentsForUser);
+        await _mediator.Send(new AddAppointmentsForUserCommand(appointmentsForUser));
         return Ok();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> CancelMeeting([FromBody]CancelMeetingRequest request)
+    public async Task<IActionResult> CancelAppointment([FromBody]CancelAppointmentRequest request)
     {
-        var appointmentsForUser = (await _repository.Get()).FirstOrDefault(a => a.UserId == request.UserId);
-        appointmentsForUser.Appointments.RemoveAll(a => a.OfficeId == request.OfficeId);
-        await _repository.Update(appointmentsForUser);
+        await _mediator.Send(new CancelAppointmentRequestCommand(request));
         return Ok();
     }
 

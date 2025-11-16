@@ -1,4 +1,5 @@
 
+using Core.Queries;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using GoVisit.Domain;
@@ -17,6 +18,8 @@ builder.Services.AddTransient<IAppiontmentsForUserRepository, AppiontmentsForUse
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<AppointmentsForUserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CancelMeetingRequestValidator>();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(GetAppointmentsForUserQuery).Assembly));
 
 var app = builder.Build();
 

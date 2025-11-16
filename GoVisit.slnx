@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Core/Core.csproj" Id="2581297f-9da3-4519-8f0d-3fb3e1d70c33" />
   <Project Path="GoVisit.Domain/GoVisit.Domain.csproj" />
   <Project Path="GoVisit.Repo/GoVisit.Repo.csproj" />
   <Project Path="GoVisit/GoVisit.csproj" />

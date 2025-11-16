@@ -16,7 +16,7 @@ public class AppointmentsForUserValidator : AbstractValidator<AppointmentsForUse
     }
 }
 
-public class CancelMeetingRequestValidator : AbstractValidator<CancelMeetingRequest>
+public class CancelMeetingRequestValidator : AbstractValidator<CancelAppointmentRequest>
 {
     public CancelMeetingRequestValidator(IUserRepository repo)
     {
