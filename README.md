@@ -1,17 +1,16 @@
-***Book Appointment - mini application**
+**Book Appointment - mini application**
 
-**DB**  - Mongo Atlas cluster
+**DB** - Mongo Atlas cluster
 
 **CQRS** - Using MediatR
 
-**CRUD**  - has been implemted: 
+**FluentValidation** - validate booking an appointment or deleting one
 
-**FluentValidation - validate booking an appoinmnet or deleting one**
+**CRUD** - has been implemented
 
 **AppointmentsForUser** -Get, Add, Delete
 
-**User** - Get, Add 
-
+**User** - Get, Add
 
 If U have any questions pls call 0527620419 -haya
 
